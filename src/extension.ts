@@ -10,20 +10,20 @@ const statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignmen
 statusBarItem.command = 'httpProxyToggle.toggle';
 
 function updateStatusBar(currentProxy: string) {
-    let currentStatus = '$(briefcase)'; // Office用のアイコン
-    let hoverText = 'Http Proxy: Office'; // Office用のホバーテキスト
+    let currentStatus = '$(briefcase)';
+    let hoverText = 'Http Proxy: Office';
 
     if (currentProxy === home) {
-        currentStatus = '$(home)'; // Home用のアイコン
-        hoverText = 'Http Proxy: Home'; // Home用のホバーテキスト
+        currentStatus = '$(home)';
+        hoverText = 'Http Proxy: Home';
     }
 
     statusBarItem.text = currentStatus;
-    statusBarItem.tooltip = hoverText + '[' + currentProxy + ']'; // ホバーテキストを設定
+    statusBarItem.tooltip = hoverText + '[' + currentProxy + ']';
     statusBarItem.show();
 }
 
-function toggleProxy() {
+async function toggleProxy() {
     currentProxy = vscode.workspace.getConfiguration('http').get<string>('proxy');
     if (currentProxy === home) {
         currentProxy = office;
@@ -32,6 +32,7 @@ function toggleProxy() {
     }
     vscode.workspace.getConfiguration('http').update('proxy', currentProxy, vscode.ConfigurationTarget.Global);
     updateStatusBar(currentProxy as string);
+
 }
 
 updateStatusBar(currentProxy as string);
@@ -51,6 +52,6 @@ vscode.commands.registerCommand('httpProxyToggle.toggle', toggleProxy);
 
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
-export function activate(context: vscode.ExtensionContext) {}
+export function activate(context: vscode.ExtensionContext) { }
 // This method is called when your extension is deactivated
-export function deactivate() {}
+export function deactivate() { }

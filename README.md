@@ -1,25 +1,11 @@
-# HTTP Proxy Toggle 拡張機能
+# VSCode Proxy Toggle
 
-## 概要
+## Introduction
 
-この拡張機能は、VS CodeのHTTPプロキシ設定を切り替えるためのものです。  
-ユーザーは、自宅とオフィスの2つのプロキシ設定を保存し、それらを簡単に切り替えることができます。
+This extension is used to toggle the proxy settings in VSCode. When opening remote servers such as WSL in VSCode, if you want the remote server to use a proxy, you need to switch the proxy address to the IP of the remote server. This extension allows for quick toggling between local and remote proxies.
 
-## 機能
+## Usage
 
-### ステータスバーのアイコン
+After installing the plugin, a proxy icon will appear in the status bar of VSCode. Clicking this icon will toggle the proxy settings. Proxy addresses can be configured by searching for `Http Proxy Toggle` in the settings.
 
-ステータスバーには、現在のプロキシ設定を示すアイコンが表示されます。  
-アイコンは、現在のプロキシ設定に応じて変わります。
-
-- 自宅の設定が適用されている場合: 🏠`(home)`
-- オフィスの設定が適用されている場合: 💼`(briefcase)`
-
-アイコンにマウスをホバーすると、現在のプロキシ設定の詳細が表示されます。
-
-### プロキシ設定の切り替え
-
-ステータスバーのアイコンをクリックすることでプロキシ設定が切り替わります。
-
-- 🏠`(home)`: クリックすると 💼`(briefcase)` に切り替え
-- 💼`(briefcase)`: クリックすると 🏠`(home)` に切り替え
+![](https://picbed-1311007548.cos.ap-shanghai.myqcloud.com/markdown_picbed/img//2024/07/27/443688b6c69df9607542240800ad17df.gif)

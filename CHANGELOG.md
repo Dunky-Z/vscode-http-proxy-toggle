@@ -1,5 +1,10 @@
 # Change Log
 
+## [1.0.1]
+
+- Lower the minimum version requirement for VSCode to support usage with older versions of VSCode.
+- Update Readme to English.
+
 ## [1.0.0]
 
 - Marketplaceのリリースしました。  
