@@ -1,11 +1,40 @@
-# VSCode Proxy Toggle
+# http-proxy-toggle by Soshnikov
 
-## Introduction
+Toggle VS Code's `http.proxy` setting from the status bar.
 
-This extension is used to toggle the proxy settings in VSCode. When opening remote servers such as WSL in VSCode, if you want the remote server to use a proxy, you need to switch the proxy address to the IP of the remote server. This extension allows for quick toggling between local and remote proxies.
+This extension cycles between two configured proxy profiles and a disabled state:
+
+```text
+Office -> Home -> Disabled -> Office
+```
+
+## Features
+
+- Status bar proxy indicator with the current profile.
+- One-click proxy switching.
+- Configurable Home and Office proxy URLs.
+- Disabled state that clears `http.proxy`.
+- Works well when switching between local and remote development environments such as WSL or SSH.
 
 ## Usage
 
-After installing the plugin, a proxy icon will appear in the status bar of VSCode. Clicking this icon will toggle the proxy settings. Proxy addresses can be configured by searching for `Http Proxy Toggle` in the settings.
+After installation, click the proxy icon in the VS Code status bar to switch proxy states.
 
-![](https://picbed-1311007548.cos.ap-shanghai.myqcloud.com/markdown_picbed/img//2024/07/27/443688b6c69df9607542240800ad17df.gif)
+Configure proxy URLs in VS Code settings by searching for `HTTP Proxy Toggle`.
+
+| Setting | Default | Description |
+| --- | --- | --- |
+| `httpProxyToggle.office` | `http://127.0.0.1:7890` | Proxy URL for the Office profile. |
+| `httpProxyToggle.home` | empty | Proxy URL for the Home profile. If empty, selecting Home disables the proxy. |
+
+![HTTP Proxy Toggle demo](https://picbed-1311007548.cos.ap-shanghai.myqcloud.com/markdown_picbed/img//2024/07/27/443688b6c69df9607542240800ad17df.gif)
+
+## Maintained Fork
+
+This package is a maintained fork of [Dunky-Z/vscode-http-proxy-toggle](https://github.com/Dunky-Z/vscode-http-proxy-toggle), which is itself forked from [kita-develop/vscode-http-proxy-toggle](https://github.com/kita-develop/vscode-http-proxy-toggle).
+
+The original Marketplace extension is `DominicZhang.proxy-toggle`.
+
+## License
+
+No explicit upstream open-source license was found in the upstream repositories as of 2026-04-28. See [LICENSE](LICENSE) and [NOTICE.md](NOTICE.md) before redistributing or reusing the source code.

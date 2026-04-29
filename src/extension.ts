@@ -9,42 +9,50 @@ let currentProxy = vscode.workspace.getConfiguration('http').get<string>('proxy'
 const statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left);
 statusBarItem.command = 'httpProxyToggle.toggle';
 
-function updateStatusBar(currentProxy: string) {
-    let currentStatus = '$(briefcase)';
-    let hoverText = 'Http Proxy: Office';
+function updateStatusBar(currentProxy: string | undefined) {
+    let currentStatus: string;
+    let hoverText: string;
 
-    if (currentProxy === home) {
+    if (currentProxy === office && office !== '') {
+        currentStatus = '$(briefcase)';
+        hoverText = 'Http Proxy: Office';
+    } else if (currentProxy === home && home !== '') {
         currentStatus = '$(home)';
         hoverText = 'Http Proxy: Home';
+    } else {
+        currentStatus = '$(shield)✖';
+        hoverText = 'Http Proxy: Disabled';
     }
 
     statusBarItem.text = currentStatus;
-    statusBarItem.tooltip = hoverText + '[' + currentProxy + ']';
+    statusBarItem.tooltip = hoverText + (currentProxy ? ' [' + currentProxy + ']' : '');
     statusBarItem.show();
 }
 
 async function toggleProxy() {
     currentProxy = vscode.workspace.getConfiguration('http').get<string>('proxy');
-    if (currentProxy === home) {
-        currentProxy = office;
-    } else {
+    if (currentProxy === office) {
         currentProxy = home;
+    } else if (currentProxy === home && home !== '') {
+        currentProxy = '';
+    } else {
+        currentProxy = office;
     }
     vscode.workspace.getConfiguration('http').update('proxy', currentProxy, vscode.ConfigurationTarget.Global);
-    updateStatusBar(currentProxy as string);
+    updateStatusBar(currentProxy);
 
 }
 
-updateStatusBar(currentProxy as string);
+updateStatusBar(currentProxy);
 
 vscode.workspace.onDidChangeConfiguration(event => {
     if (event.affectsConfiguration('httpProxyToggle.home')) {
         home = vscode.workspace.getConfiguration().get('httpProxyToggle.home') ?? '';
-        updateStatusBar(currentProxy as string);
+        updateStatusBar(currentProxy);
     }
     else if (event.affectsConfiguration('httpProxyToggle.office')) {
         office = vscode.workspace.getConfiguration().get('httpProxyToggle.office') ?? '';
-        updateStatusBar(currentProxy as string);
+        updateStatusBar(currentProxy);
     }
 });
 

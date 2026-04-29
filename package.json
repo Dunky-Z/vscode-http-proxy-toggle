@@ -1,12 +1,17 @@
 {
-    "name": "http-proxy-toggle",
-    "displayName": "http-proxy-toggle",
-    "description": "The VSCode extension is used for quick switching between two proxies directly.",
-    "publisher": "with-ai-life",
+    "name": "http-proxy-toggle-soshnikov",
+    "displayName": "http-proxy-toggle by Soshnikov",
+    "description": "Toggle VS Code's HTTP proxy between home, office, and disabled states from the status bar.",
+    "publisher": "soshnikov",
+    "license": "SEE LICENSE IN LICENSE",
     "icon": "proxyIcon.png",
     "repository": {
         "type": "git",
-        "url": "https://github.com/Dunky-Z/vscode-http-proxy-toggle.git"
+        "url": "https://github.com/Doka-NT/vscode-http-proxy-toggle.git"
+    },
+    "homepage": "https://github.com/Doka-NT/vscode-http-proxy-toggle#readme",
+    "bugs": {
+        "url": "https://github.com/Doka-NT/vscode-http-proxy-toggle/issues"
     },
     "version": "1.0.0",
     "engines": {
@@ -15,23 +20,43 @@
     "categories": [
         "Other"
     ],
+    "keywords": [
+        "proxy",
+        "http-proxy",
+        "vscode",
+        "status-bar",
+        "remote",
+        "wsl"
+    ],
+    "galleryBanner": {
+        "color": "#1F6FEB",
+        "theme": "dark"
+    },
+    "pricing": "Free",
     "activationEvents": [
-        "*"
+        "onStartupFinished",
+        "onCommand:httpProxyToggle.toggle"
     ],
     "main": "./out/extension.js",
     "contributes": {
-        "command": "http-proxy-toggle.toggle",
+        "commands": [
+            {
+                "command": "httpProxyToggle.toggle",
+                "title": "Toggle Proxy",
+                "category": "HTTP Proxy Toggle"
+            }
+        ],
         "configuration": {
-            "title": "http-proxy-toggle",
+            "title": "HTTP Proxy Toggle",
             "properties": {
                 "httpProxyToggle.home": {
                     "type": "string",
-                    "description": "Set Home Http Proxy",
+                    "description": "HTTP proxy URL for the Home profile. Leave empty to disable the proxy when this profile is selected.",
                     "default": ""
                 },
                 "httpProxyToggle.office": {
                     "type": "string",
-                    "description": "Set Office Http Proxy",
+                    "description": "HTTP proxy URL for the Office profile.",
                     "default": "http://127.0.0.1:7890"
                 }
             }
